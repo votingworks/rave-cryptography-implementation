@@ -42,7 +42,7 @@ const egElectionDefinition = {
       return {
         object_id: `cand-${cand.id}`,
         name: cand.name,
-        party_id: cand.partyIds[0],
+        party_id: `party-${cand.partyIds[0]}`,
         image_url: null,
         is_write_in: false,
       }
@@ -52,15 +52,16 @@ const egElectionDefinition = {
     return {
       object_id: `contest-${contest.id}`,
       sequence_order: contest_num,
-      electoral_district_id: contest.districtId,
+      electoral_district_id: `district-${contest.districtId}`,
       vote_variation: "one_of_m",
       number_elected: contest.seats,
-      votes_allowed: contest.seats,
+	votes_allowed: contest.seats,
+	name: `contest-${contest.id}`,
       ballot_selections: contest.candidates.map((cand, cand_num) => {
         return {
           object_id: `cand-${cand.id}`,
           sequence_order: cand_num,
-          candidate_id: cand.id,
+          candidate_id: `cand-${cand.id}`,
         };
       }),
       ballot_title: contest.title,
@@ -70,8 +71,8 @@ const egElectionDefinition = {
   ballot_styles: vxElectionDefinition.ballotStyles.map(ballotStyle => {
     return {
       object_id: `ballot-style-${ballotStyle.id}`,
-      geopolitical_unit_ids: ballotStyle.districts,
-      party_ids: [ballotStyle.partyId],
+	geopolitical_unit_ids: ballotStyle.districts.map(d => `district-${d}`),
+      party_ids: [`party-${ballotStyle.partyId}`],
       image_url: null
     };
   }),
