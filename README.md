@@ -59,3 +59,48 @@ java \
     -out testOut/cliWorkflow/keyceremony 
 ```
 
+## Encrypt a Ballot
+
+We have to use the initialized configuration now, coming out of the key ceremony.
+
+Start the server
+
+```
+java \
+  -classpath ${EG_HOME}/encryptserver/build/libs/encryptserver-all.jar \
+  electionguard.webapps.server.RunEgkServerKt \
+  --inputDir testOut/cliWorkflow/keyceremony \
+  --outputDir testOut/encrypt/RunEgkServer
+```
+
+Encrypt a ballot against the server
+
+```
+java \
+  -classpath ${EG_HOME}/encryptclient/build/libs/encryptclient-all.jar \
+  electionguard.webapps.client.RunEgkClientKt \
+  --inputDir testOut/cliWorkflow/keyceremony \
+  --outputDir testOut/encrypt/RunEgkServer
+```
+
+## Accumulate the Tally
+
+```
+java \
+  -classpath ${EG_HOME}/egklib/build/libs/egklib-all.jar \
+  electionguard.cli.RunAccumulateTally \
+    -in testOut/encrypt/RunEgkServer \
+    -out testOut/encrypt/RunEgkServer 
+```
+
+## Run Tally Decryption
+
+```
+java \
+  -classpath ${EG_HOME}/egklib/build/libs/egklib-all.jar \
+  electionguard.cli.RunTrustedTallyDecryption \
+    -in testOut/encrypt/RunEgkServer \
+    -trustees testOut/cliWorkflow/keyceremony/trustees \
+    -out testOut/encrypt/RunEgkServer 
+```
+

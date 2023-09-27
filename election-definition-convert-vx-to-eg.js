@@ -51,7 +51,7 @@ const egElectionDefinition = {
   contests: vxElectionDefinition.contests.map((contest, contest_num) => {
     return {
       object_id: `contest-${contest.id}`,
-      sequence_order: contest_num,
+      sequence_order: contest_num + 1,
       electoral_district_id: `district-${contest.districtId}`,
       vote_variation: "one_of_m",
       number_elected: contest.seats,
@@ -60,7 +60,7 @@ const egElectionDefinition = {
       ballot_selections: contest.candidates.map((cand, cand_num) => {
         return {
           object_id: `cand-${cand.id}`,
-          sequence_order: cand_num,
+          sequence_order: cand_num + 1,
           candidate_id: `cand-${cand.id}`,
         };
       }),
