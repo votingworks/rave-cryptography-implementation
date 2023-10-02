@@ -2,6 +2,15 @@
 
 This is a client of the electionguard library for RAVE purposes.
 
+## IMPORTANT WARNING
+
+The installation scripts below sometimes require root access and will
+install a number of executable packages that are not always neatly
+isolated from the rest of your system. It is strongly recommended that
+you run this in a virtual machine dedicated to testing RAVE.
+
+This is tested on Debian 12.1.0.
+
 ## Install Basics
 
 This is for Linux.
