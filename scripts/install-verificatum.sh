@@ -25,3 +25,5 @@ make -f Makefile.build
 make
 sudo make install
 
+# initialize randomness
+vog -rndinit RandomDevice /dev/urandom
