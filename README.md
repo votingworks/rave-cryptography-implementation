@@ -6,17 +6,11 @@ This is a client of the electionguard library for RAVE purposes.
 
 This is for Linux.
 
-- Get Java 17
+- Get Basic Stuff
 
 ```
-sudo apt install openjdk-17-jre
+./scripts/install-basic.sh
 ```
-
-- Get SDKMan! https://sdkman.io/
-
-- Install kotlin
-
-`sdk install kotlin`
 
 ## Install ElectionGuard
 
