@@ -74,12 +74,10 @@ for file in ${EG_WORKSPACE}/encrypted_ballots/*/eballot-*.json; do
 	WIDTH=`echo "$NEW_BALLOT" | jq '.[0] | length'`
 
 	# append ballot to the array of ballots
-	echo "appending ballot"
 	if [ $LOOP_NUM -gt 0 ]; then
 	    echo "," >> ${VERIFICATUM_WORKSPACE}/input-ciphertexts.json
 	fi
 	echo "$NEW_BALLOT" >> ${VERIFICATUM_WORKSPACE}/input-ciphertexts.json
-	echo "done appending ballot"
     fi
     LOOP_NUM=1
 done

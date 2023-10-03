@@ -2,7 +2,7 @@
 
 source $(dirname "$0")/functions.sh
 
-rave_print "Installing ElectionGuard..."
+rave_print "Installing Verificatum Mixnet..."
 
 mkdir -p tools
 cd tools
@@ -13,7 +13,7 @@ cd verificatum
 git clone https://github.com/verificatum/verificatum-vcr
 git clone https://github.com/verificatum/verificatum-vmn
 
-sudo apt install autotools-dev automake
+sudo apt install -y autotools-dev automake
 
 cd verificatum-vcr
 make -f Makefile.build
@@ -32,4 +32,4 @@ sudo make install
 # initialize randomness
 vog -rndinit RandomDevice /dev/urandom
 
-rave_print "[DONE] Installing ElectionGuard."
+rave_print "[DONE] Installing Verificatum Mixnet."
