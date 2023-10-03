@@ -1,6 +1,7 @@
-# RAVE ElectionGuard Client
+# RAVE Cryptography Implementation
 
-This is a client of the electionguard library for RAVE purposes.
+This is an early prototype implementation.
+
 
 ## IMPORTANT WARNING
 
