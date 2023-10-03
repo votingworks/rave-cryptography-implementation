@@ -1,15 +1,21 @@
 #!/bin/bash
 
+source $(dirname "$0")/functions.sh
+
 WORKSPACE_DIR=$1
 NUM_BALLOTS=$2
 
 if [ -z "${WORKSPACE_DIR}" ]; then
+    rave_print "No workspace provided."
     exit 1
 fi
 
 if [ -z "${NUM_BALLOTS}" ]; then
+    rave_print "No number of ballots provided."
     exit 1
 fi
+
+rave_print "Generating and Encrypting ${NUM_BALLOTS} ballots..."
 
 # run the encryption server
 java \
@@ -31,3 +37,5 @@ java \
   --nballots ${NUM_BALLOTS}
 
 kill ${SERVER_PID}
+
+rave_print "[DONE] Generating encrypted ballots: ${WORKSPACE_DIR}/eg/encryption/encrypted_ballots"

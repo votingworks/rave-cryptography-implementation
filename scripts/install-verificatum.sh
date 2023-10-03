@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source $(dirname "$0")/functions.sh
+
+rave_print "Installing ElectionGuard..."
+
 mkdir -p tools
 cd tools
 rm -rf verificatum
@@ -27,3 +31,5 @@ sudo make install
 
 # initialize randomness
 vog -rndinit RandomDevice /dev/urandom
+
+rave_print "[DONE] Installing ElectionGuard."

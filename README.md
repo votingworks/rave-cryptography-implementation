@@ -57,7 +57,6 @@ mkdir <WORKSPACE_DIR>
 ./scripts/generate-and-encrypt-ballots.sh <WORKSPACE_DIR> <num_ballots>
 ```
 
-This will output the encrypted ballot, which should be written to a file.
 
 ## Homomorphically Tally Ballots
 
@@ -65,7 +64,6 @@ This will output the encrypted ballot, which should be written to a file.
 ./scripts/tabulate-encrypted-ballots.sh <WORKSPACE_DIR>
 ```
 
-This will return the tally JSON, which should be written to a file
 
 ## Decrypt the Tally
 

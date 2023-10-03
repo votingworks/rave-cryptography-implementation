@@ -1,15 +1,21 @@
 #!/bin/bash
 
+source $(dirname "$0")/functions.sh
+
 WORKSPACE_DIR=$1
 VX_DEF=$2
 
 if [ -z "${WORKSPACE_DIR}" ]; then
+    rave_print "No workspace provided."
     exit 1
 fi
 
 if [ -z "${VX_DEF}" ]; then
+    rave_print "No Vx election definition provided."    
     exit 1
 fi
+
+rave_print "Initializing Election..."
 
 rm -rf ${WORKSPACE_DIR}/*
 
@@ -27,3 +33,4 @@ java \
     -out ${WORKSPACE_DIR}/eg/initialized \
     --baux0 device42
 
+rave_print "[DONE] Initializing Election -- data in ${WORKSPACE_DIR}/eg/"

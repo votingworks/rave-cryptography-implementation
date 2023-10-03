@@ -1,10 +1,15 @@
 #!/bin/bash
 
+source $(dirname "$0")/functions.sh
+
 WORKSPACE_DIR=$1
 
 if [ -z "${WORKSPACE_DIR}" ]; then
+    rave_print "No workspace provided."
     exit 1
 fi
+
+rave_print "Generating Election Keypair..."
 
 java \
   -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 \
@@ -23,3 +28,5 @@ java \
     -in ${WORKSPACE_DIR}/eg/initialized \
     -trustees ${WORKSPACE_DIR}/eg/trustees \
     -out ${WORKSPACE_DIR}/eg/keyceremony 
+
+rave_print "[DONE] Generating Election Keypair, private data in ${WORKSPACE_DIR}/eg/trustees, election config in ${WORKSPACE_DIR}/eg/keyceremony"

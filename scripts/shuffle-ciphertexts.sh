@@ -1,10 +1,15 @@
 #!/bin/bash
 
+source $(dirname "$0")/functions.sh
+
 WORKSPACE_DIR=$1
 
 if [ -z "${WORKSPACE_DIR}" ]; then
+    rave_print "No workspace provided."
     exit 1
 fi
+
+rave_print "Shuffling encrypted ballots..."
 
 EG_WORKSPACE="${WORKSPACE_DIR}/eg/encryption"
 CONSTANTS="${EG_WORKSPACE}/constants.json"
@@ -55,6 +60,8 @@ vmn -setpk ${VERIFICATUM_WORKSPACE}/privInfo.xml ${VERIFICATUM_WORKSPACE}/protIn
 echo "[" > ${VERIFICATUM_WORKSPACE}/input-ciphertexts.json
 LOOP_NUM=0
 
+rave_print "... Set up the mixnet, now loading encrypted ballots ..."
+
 for file in ${EG_WORKSPACE}/encrypted_ballots/*/eballot-*.json; do
     # Check if file exists (this avoids the loop body executing if no files match the pattern)
     if [[ -f "$file" ]]; then
@@ -84,6 +91,8 @@ vmnc -e -ciphs -width "${WIDTH}"  -ini seqjson -outi raw \
      ${VERIFICATUM_WORKSPACE}/protInfo.xml ${VERIFICATUM_WORKSPACE}/input-ciphertexts.json ${VERIFICATUM_WORKSPACE}/input-ciphertexts.raw
 
 
+rave_print "... now shuffling once ..."
+
 AUXSID=`date "+%s" | sed "s/ /_/g"`
 
 # shuffle once
@@ -91,6 +100,8 @@ vmn -shuffle -width "${WIDTH}" -auxsid "${AUXSID}" \
     ${VERIFICATUM_WORKSPACE}/privInfo.xml \
     ${VERIFICATUM_WORKSPACE}/protInfo.xml \
     ${VERIFICATUM_WORKSPACE}/input-ciphertexts.raw ${VERIFICATUM_WORKSPACE}/after-mix-1-ciphertexts.raw
+
+rave_print "... and shuffling twice ..."
 
 AUXSID=`date "+%s" | sed "s/ /_/g"`
 
@@ -104,4 +115,4 @@ vmn -shuffle -width "${WIDTH}" -auxsid "${AUXSID}" \
 vmnc -ciphs -width "${WIDTH}" -ini raw -outi seqjson \
      ${VERIFICATUM_WORKSPACE}/protInfo.xml ${VERIFICATUM_WORKSPACE}/after-mix-2-ciphertexts.raw ${VERIFICATUM_WORKSPACE}/after-mix-2-ciphertexts.json
 
-
+rave_print "[DONE] Shuffled encrypted ballots are in ${VERIFICATUM_WORKSPACE}/after-mix-2-ciphertexts.json"
