@@ -34,7 +34,8 @@ java \
   electionguard.webapps.client.RunEgkClientKt \
   --inputDir ${WORKSPACE_DIR}/eg/keyceremony \
   --outputDir ${WORKSPACE_DIR}/eg/encryption \
-  --nballots ${NUM_BALLOTS}
+  --nballots ${NUM_BALLOTS} \
+  -saveBallots ${WORKSPACE_DIR}/eg/encryption/private/input
 
 kill ${SERVER_PID}
 

@@ -83,6 +83,22 @@ This extracts only the ciphertexts from ElectionGuard encrypted ballots (no proo
 
 ## Plaintext Equivalence Proof
 
-coming soon.
+Simulate scanning and encrypting the paper input ballots for PEP:
+
+```
+./scripts/generate-pep-ballots.sh <WORKSPACE_DIR>
+```
+
+Run PEP comparison on the original encrypted ballots and the 'scanned' encrypted ballots:
+
+```
+./scripts/run-pep-compare.sh <WORKSPACE_DIR>
+```
+
+Verify the PEP output:
+
+```
+./scripts/run-pep-verify.sh <WORKSPACE_DIR>
+```
 
 
