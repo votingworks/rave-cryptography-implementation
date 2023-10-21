@@ -12,7 +12,7 @@ fi
 rave_print "Verify the PEP output."
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunVerifyPep \
     -in ${WORKSPACE_DIR}/eg/encryption \
     -pep ${WORKSPACE_DIR}/eg/pep/ \

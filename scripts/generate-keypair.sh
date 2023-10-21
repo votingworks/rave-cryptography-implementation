@@ -13,7 +13,7 @@ rave_print "Generating Election Keypair..."
 
 java \
   -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunCreateElectionConfig \
     -manifest ${WORKSPACE_DIR}/eg/manifest.json \
     -nguardians 3 \
@@ -23,7 +23,7 @@ java \
 
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunTrustedKeyCeremony \
     -in ${WORKSPACE_DIR}/eg/initialized \
     -trustees ${WORKSPACE_DIR}/eg/trustees \

@@ -12,7 +12,7 @@ fi
 rave_print "Run PEP comparison on the original encrypted ballots and the 'scanned' encrypted ballots."
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunTrustedPep \
     -in ${WORKSPACE_DIR}/eg/encryption \
     -trustees ${WORKSPACE_DIR}/eg/trustees \
