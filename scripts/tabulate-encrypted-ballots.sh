@@ -12,7 +12,7 @@ fi
 rave_print "Tabulating encrypted ballots..."
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunAccumulateTally \
     -in ${WORKSPACE_DIR}/eg/encryption \
     -out ${WORKSPACE_DIR}/eg/encryption 

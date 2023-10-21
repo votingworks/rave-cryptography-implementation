@@ -13,7 +13,7 @@ fi
 rave_print "Decrypting encrypted tally..."
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunTrustedTallyDecryption \
     -in ${WORKSPACE_DIR}/eg/encryption \
     -trustees ${WORKSPACE_DIR}/eg/trustees \

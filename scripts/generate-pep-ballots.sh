@@ -12,7 +12,7 @@ fi
 rave_print "Simulate scanning and encrypting the paper input ballots for PEP..."
 
 java \
-  -classpath ./tools/electionguard/egk-webapps/egklib/build/libs/egklib-all.jar \
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunBatchEncryption \
     -in ${WORKSPACE_DIR}/eg/keyceremony \
     -ballots ${WORKSPACE_DIR}/eg/encryption/private/input \
