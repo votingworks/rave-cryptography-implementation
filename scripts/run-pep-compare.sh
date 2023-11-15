@@ -9,14 +9,15 @@ if [ -z "${WORKSPACE_DIR}" ]; then
     exit 1
 fi
 
-rave_print "Run PEP comparison on the original encrypted ballots and the 'scanned' encrypted ballots."
+rave_print "Checking mixnet output against the encrypted ballots with PEP algorithm"
 
 java \
   -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
-  electionguard.cli.RunTrustedPep \
+  electionguard.cli.RunMixnetBlindTrustPep \
     -in ${WORKSPACE_DIR}/eg/encryption \
+    --mixnetFile ${WORKSPACE_DIR}/vf/after-mix-2-ciphertexts.json \
     -trustees ${WORKSPACE_DIR}/eg/trustees \
-    -scanned ${WORKSPACE_DIR}/eg/pep/encrypted/encrypted_ballots/scanned \
-    -out ${WORKSPACE_DIR}/eg/pep/ \
+    -out ${WORKSPACE_DIR}/eg/pep
 
-rave_print "[DONE] PEP comparison."
+
+rave_print "[DONE] Checking mixnet output."
