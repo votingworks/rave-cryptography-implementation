@@ -65,7 +65,6 @@ mkdir <WORKSPACE_DIR>
 ./scripts/tabulate-encrypted-ballots.sh <WORKSPACE_DIR>
 ```
 
-
 ## Decrypt the Tally
 
 ```
@@ -83,13 +82,7 @@ This extracts only the ciphertexts from ElectionGuard encrypted ballots (no proo
 
 ## Plaintext Equivalence Proof
 
-Simulate scanning and encrypting the paper input ballots for PEP:
-
-```
-./scripts/generate-pep-ballots.sh <WORKSPACE_DIR>
-```
-
-Run PEP comparison on the original encrypted ballots and the 'scanned' encrypted ballots:
+Run PEP comparison on the original encrypted ballots and the mixnet output:
 
 ```
 ./scripts/run-pep-compare.sh <WORKSPACE_DIR>
