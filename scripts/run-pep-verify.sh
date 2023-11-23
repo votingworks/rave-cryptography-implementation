@@ -14,7 +14,7 @@ rave_print "Verify the PEP output."
 java \
   -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunVerifyPep \
-    -in ${WORKSPACE_DIR}/eg/encryption \
-    -pep ${WORKSPACE_DIR}/eg/pep/ \
+    -in ${WORKSPACE_DIR}/eg \
+    -pep ${WORKSPACE_DIR}/bb/pep/ \
 
 rave_print "[DONE] PEP verify."

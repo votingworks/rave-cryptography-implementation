@@ -15,8 +15,8 @@ rave_print "Decrypting encrypted tally..."
 java \
   -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunTrustedTallyDecryption \
-    -in ${WORKSPACE_DIR}/eg/encryption \
+    -in ${WORKSPACE_DIR}/eg \
     -trustees ${WORKSPACE_DIR}/eg/trustees \
-    -out ${WORKSPACE_DIR}/eg/encryption 
+    -out ${WORKSPACE_DIR}/eg
 
-rave_print "[DONE] Decrypting encrypted tally. Tally in ${WORKSPACE_DIR}/eg/encryption/tally.json"
+rave_print "[DONE] Decrypted tally in ${WORKSPACE_DIR}/eg/tally.json"

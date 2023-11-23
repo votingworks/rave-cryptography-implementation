@@ -15,28 +15,23 @@ if [ -z "${NUM_BALLOTS}" ]; then
     exit 1
 fi
 
-rave_print "Generating and Encrypting ${NUM_BALLOTS} ballots..."
-
-# run the encryption server
+rave_print "Generating ${NUM_BALLOTS} ballots..."
 java \
-  -classpath ./tools/electionguard/egk-webapps/encryptserver/build/libs/encryptserver-all.jar \
-  electionguard.webapps.server.RunEgkServerKt \
-  --inputDir ${WORKSPACE_DIR}/eg/keyceremony \
-  --outputDir ${WORKSPACE_DIR}/eg/encryption &
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
+     electionguard.cli.RunCreateInputBallots \
+       -manifest ${WORKSPACE_DIR}/eg/manifest.json \
+       -out ${WORKSPACE_DIR}/eg/inputBallots \
+       --nballots ${NUM_BALLOTS} \
+       -json
 
-SERVER_PID=$!
+rave_print "Encrypting ${NUM_BALLOTS} ballots..."
 
-sleep 5
-
-# generate a bunch of ballots and encrypt them
 java \
-  -classpath ./tools/electionguard/egk-webapps/encryptclient/build/libs/encryptclient-all.jar \
-  electionguard.webapps.client.RunEgkClientKt \
-  --inputDir ${WORKSPACE_DIR}/eg/keyceremony \
-  --outputDir ${WORKSPACE_DIR}/eg/encryption \
-  --nballots ${NUM_BALLOTS} \
-  -saveBallots ${WORKSPACE_DIR}/eg/encryption/private/input
+  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
+  electionguard.cli.RunBatchEncryption \
+    -in ${WORKSPACE_DIR}/eg \
+    -ballots ${WORKSPACE_DIR}/eg/inputBallots \
+    -eballots ${WORKSPACE_DIR}/bb/EB \
+    -device device42
 
-kill ${SERVER_PID}
-
-rave_print "[DONE] Generating encrypted ballots: ${WORKSPACE_DIR}/eg/encryption/encrypted_ballots"
+rave_print "[DONE] Generating encrypted ballots: ${WORKSPACE_DIR}/bb/EB"
