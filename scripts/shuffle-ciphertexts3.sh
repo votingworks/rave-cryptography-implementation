@@ -11,7 +11,7 @@ fi
 
 rave_print "Shuffling encrypted ballots..."
 
-EG_WORKSPACE="${WORKSPACE_DIR}/eg/encryption"
+EG_WORKSPACE="${WORKSPACE_DIR}/eg"
 CONSTANTS="${EG_WORKSPACE}/constants.json"
 ELECTION_PARAMS="${EG_WORKSPACE}/election_initialized.json"
 

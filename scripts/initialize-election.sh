@@ -30,7 +30,7 @@ java \
     -manifest ${WORKSPACE_DIR}/eg/manifest.json \
     -nguardians 3 \
     -quorum 3 \
-    -out ${WORKSPACE_DIR}/eg/initialized \
+    -out ${WORKSPACE_DIR}/eg \
     --baux0 device42
 
-rave_print "[DONE] Initializing Election -- data in ${WORKSPACE_DIR}/eg/"
+rave_print "[DONE] Configuring Election -- data in ${WORKSPACE_DIR}/eg/config"

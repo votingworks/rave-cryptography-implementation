@@ -12,21 +12,10 @@ fi
 rave_print "Generating Election Keypair..."
 
 java \
-  -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 \
-  -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
-  electionguard.cli.RunCreateElectionConfig \
-    -manifest ${WORKSPACE_DIR}/eg/manifest.json \
-    -nguardians 3 \
-    -quorum 3 \
-    -out ${WORKSPACE_DIR}/eg/initialized \
-    --baux0 device42
-
-
-java \
   -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunTrustedKeyCeremony \
-    -in ${WORKSPACE_DIR}/eg/initialized \
+    -in ${WORKSPACE_DIR}/eg \
     -trustees ${WORKSPACE_DIR}/eg/trustees \
-    -out ${WORKSPACE_DIR}/eg/keyceremony 
+    -out ${WORKSPACE_DIR}/eg
 
-rave_print "[DONE] Generating Election Keypair, private data in ${WORKSPACE_DIR}/eg/trustees, election config in ${WORKSPACE_DIR}/eg/keyceremony"
+rave_print "[DONE] Generating Election Keypair: election initialization in ${WORKSPACE_DIR}/eg, private data in ${WORKSPACE_DIR}/eg/trustees"

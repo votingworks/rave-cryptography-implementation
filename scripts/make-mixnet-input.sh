@@ -18,7 +18,7 @@ rave_print "Creating mixnet input from the encrypted ballots"
 java \
   -classpath ./tools/electionguard/egk-webapps/libs/egklib-all.jar \
   electionguard.cli.RunMakeMixnetInput \
-    -in ${WORKSPACE_DIR}/eg/encryption \
+    -eballots ${WORKSPACE_DIR}/bb/EB \
     -out ${WORKSPACE_DIR}/vf/input-ciphertexts.json
 
 rave_print "[DONE] Creating mixnet input."
